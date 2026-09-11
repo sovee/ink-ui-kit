@@ -1,5 +1,7 @@
 # Ink UI Kit
 
+[中文](README.zh-CN.md)
+
 A one-colour CSS component kit for apps that talk to e-paper displays. Pure black on warm off-white, a heavy 2px border as the signature, pill controls, and a panel component that renders like a 1-bit screen.
 
 ## Usage
