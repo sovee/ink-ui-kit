@@ -1,0 +1,336 @@
+<title>Ink UI Kit</title>
+<link rel="stylesheet" href="ink-ui-kit.css" />
+<style>
+  * { box-sizing: border-box; }
+  :root { color-scheme: light; }
+  body { margin: 0; background: var(--ink-100); }
+  .layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+  }
+  .sidebar {
+    background: var(--ink-white);
+    border-right: var(--border-heavy);
+    padding: var(--space-5) 0;
+  }
+  .sidebar__brand {
+    background: var(--ink-black);
+    color: var(--ink-white);
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    font: 800 18px/1 var(--font-ui);
+    margin: calc(var(--space-5) * -1) 0 var(--space-5);
+  }
+  .sidebar__brand span { font: 500 11px/1 var(--font-mono); opacity: 0.6; }
+  .sidebar__group { padding: 0 var(--space-5); margin-bottom: var(--space-3); }
+  .sidebar__label {
+    font: var(--text-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--ink-500);
+    margin: var(--space-5) 0 var(--space-2);
+  }
+  .sidebar__link {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-2) 0;
+    color: var(--ink-black);
+    text-decoration: none;
+    font: 600 14px/1.4 var(--font-ui);
+    border-bottom: var(--border-soft);
+  }
+  .sidebar__link:hover { color: var(--ink-700); }
+
+  .main { padding: var(--space-7) var(--space-7) var(--space-8); max-width: 980px; }
+  .intro-eyebrow { margin-bottom: var(--space-3); }
+  .intro h1 { font: var(--text-h1); margin: 0 0 var(--space-4); }
+  .intro p { font: var(--text-body-lg); color: var(--ink-900); max-width: 62ch; margin: 0 0 var(--space-7); }
+
+  section { margin-bottom: var(--space-8); }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+  .section-num {
+    width: 28px; height: 28px;
+    border-radius: var(--radius-pill);
+    background: var(--ink-black);
+    color: var(--ink-white);
+    display: flex; align-items: center; justify-content: center;
+    font: 700 13px/1 var(--font-ui);
+    flex-shrink: 0;
+  }
+  .section-head h2 { font: var(--text-h2); margin: 0; }
+  .section-desc { color: var(--ink-700); max-width: 68ch; margin: 0 0 var(--space-5); }
+
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+  .swatch { border: var(--border-heavy); border-radius: var(--radius-md); overflow: hidden; background: var(--ink-white); }
+  .swatch__fill { height: 96px; }
+  .swatch__label { padding: var(--space-3); }
+  .swatch__name { font: var(--text-numeric); display: block; }
+  .swatch__hex { font: var(--text-caption); color: var(--ink-500); }
+
+  .demo-row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-bottom: var(--space-4); }
+  .demo-block { background: var(--ink-white); border: var(--border-heavy); border-radius: var(--radius-md); padding: var(--space-5); }
+
+  .type-row { display: flex; align-items: baseline; justify-content: space-between; padding: var(--space-3) 0; border-bottom: var(--border-hairline); gap: var(--space-4); }
+  .type-row:last-child { border-bottom: none; }
+  .type-row__meta { font: var(--text-caption); color: var(--ink-500); white-space: nowrap; }
+
+  code { font-family: var(--font-mono); }
+  footer.main-footer { color: var(--ink-500); font: var(--text-caption); padding-top: var(--space-6); border-top: var(--border-hairline); }
+
+  @media (max-width: 780px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .swatch-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<div class="ink-root">
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar__brand">INK UI KIT <span>v0.1</span></div>
+
+    <div class="sidebar__group">
+      <div class="sidebar__label">Foundations</div>
+      <a class="sidebar__link" href="#colors">Colors</a>
+      <a class="sidebar__link" href="#typography">Typography</a>
+      <a class="sidebar__link" href="#spacing">Spacing &amp; radius</a>
+    </div>
+
+    <div class="sidebar__group">
+      <div class="sidebar__label">Components</div>
+      <a class="sidebar__link" href="#buttons">Buttons</a>
+      <a class="sidebar__link" href="#chips">Chips</a>
+      <a class="sidebar__link" href="#badges">Badges &amp; tags</a>
+      <a class="sidebar__link" href="#cards">Cards</a>
+      <a class="sidebar__link" href="#panel">E-ink panel</a>
+      <a class="sidebar__link" href="#lists">Lists</a>
+      <a class="sidebar__link" href="#empty">Empty state</a>
+      <a class="sidebar__link" href="#tabbar">Tab bar</a>
+    </div>
+
+    <div class="sidebar__group">
+      <div class="sidebar__label">Reference</div>
+      <a class="sidebar__link" href="#utilities">Utility classes</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="intro">
+      <div class="ink-eyebrow intro-eyebrow">Version 0.1 · Monochrome</div>
+      <h1>Ink UI Kit</h1>
+      <p>A one-colour component kit for apps that talk to e-paper displays. Pure black on warm off-white, a heavy 2px border as the signature, pill controls, and a panel component that renders like a 1-bit screen. Drop in <code class="ink-code">ink-ui-kit.css</code> and use the class names shown below.</p>
+    </div>
+
+    <!-- COLORS -->
+    <section id="colors">
+      <div class="section-head"><div class="section-num">1</div><h2>Colors</h2></div>
+      <p class="section-desc">There is no accent hue. Hierarchy comes entirely from value: black for action and emphasis, three greys for text, two for lines, one off-white ground.</p>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch__fill" style="background:var(--ink-black)"></div><div class="swatch__label"><span class="swatch__name">--ink-black</span><span class="swatch__hex">#111111 · text, fills, active</span></div></div>
+        <div class="swatch"><div class="swatch__fill" style="background:var(--ink-900)"></div><div class="swatch__label"><span class="swatch__name">--ink-900</span><span class="swatch__hex">#1a1a1a · heavy borders</span></div></div>
+        <div class="swatch"><div class="swatch__fill" style="background:var(--ink-700)"></div><div class="swatch__label"><span class="swatch__name">--ink-700</span><span class="swatch__hex">#444444 · secondary text</span></div></div>
+        <div class="swatch"><div class="swatch__fill" style="background:var(--ink-500)"></div><div class="swatch__label"><span class="swatch__name">--ink-500</span><span class="swatch__hex">#8a8a8a · captions, eyebrows</span></div></div>
+        <div class="swatch"><div class="swatch__fill" style="background:var(--ink-300)"></div><div class="swatch__label"><span class="swatch__name">--ink-300</span><span class="swatch__hex">#d6d6d6 · hairlines</span></div></div>
+        <div class="swatch"><div class="swatch__fill" style="background:var(--ink-200)"></div><div class="swatch__label"><span class="swatch__name">--ink-200</span><span class="swatch__hex">#ececec · soft dividers</span></div></div>
+        <div class="swatch"><div class="swatch__fill" style="background:var(--ink-100)"></div><div class="swatch__label"><span class="swatch__name">--ink-100</span><span class="swatch__hex">#f5f5f3 · page ground</span></div></div>
+        <div class="swatch"><div class="swatch__fill" style="background:var(--ink-white)"></div><div class="swatch__label"><span class="swatch__name">--ink-white</span><span class="swatch__hex">#ffffff · surfaces, paper</span></div></div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section id="typography">
+      <div class="section-head"><div class="section-num">2</div><h2>Typography</h2></div>
+      <p class="section-desc">Three faces with three jobs. A tight grotesk carries the interface, a serif is reserved for quoted text on the panel, and a mono handles anything numeric.</p>
+      <div class="ink-panel">
+        <div class="ink-panel__bar"><span>Type scale</span></div>
+        <div class="ink-panel__body">
+          <div class="type-row"><span class="ink-eyebrow">Ink card library</span><span class="type-row__meta">.ink-eyebrow · 11px / .18em</span></div>
+          <div class="type-row"><span class="ink-caption">Captions sit quiet, at ink-700</span><span class="type-row__meta">.ink-caption · 12px</span></div>
+          <div class="type-row"><span class="ink-body">Body copy is the default voice</span><span class="type-row__meta">.ink-body · 15px</span></div>
+          <div class="type-row"><span class="ink-body-lg">Larger body for intros</span><span class="type-row__meta">.ink-body-lg · 18px</span></div>
+          <div class="type-row"><span class="ink-h3">Heading three</span><span class="type-row__meta">.ink-h3 · 20px / 700</span></div>
+          <div class="type-row"><span class="ink-h2">Heading two</span><span class="type-row__meta">.ink-h2 · 28px / 700</span></div>
+          <div class="type-row"><span class="ink-numeric">02:41:09 · 1,204 units</span><span class="type-row__meta">.ink-numeric · mono</span></div>
+          <div class="type-row"><span class="ink-quote">"Reads like a page, not a screen."</span><span class="type-row__meta">.ink-quote · serif italic</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPACING & RADIUS -->
+    <section id="spacing">
+      <div class="section-head"><div class="section-num">3</div><h2>Spacing &amp; radius</h2></div>
+      <p class="section-desc">An 8px-rooted scale (with a 4px half-step) and three corner treatments: sharp cards, soft controls, and full pills for anything tappable.</p>
+      <div class="demo-row">
+        <div class="demo-block" style="display:flex; gap:12px; align-items:flex-end;">
+          <div style="width:var(--space-1); height:var(--space-1); background:var(--ink-black)"></div>
+          <div style="width:var(--space-2); height:var(--space-2); background:var(--ink-black)"></div>
+          <div style="width:var(--space-3); height:var(--space-3); background:var(--ink-black)"></div>
+          <div style="width:var(--space-4); height:var(--space-4); background:var(--ink-black)"></div>
+          <div style="width:var(--space-5); height:var(--space-5); background:var(--ink-black)"></div>
+          <div style="width:var(--space-6); height:var(--space-6); background:var(--ink-black)"></div>
+          <div style="width:var(--space-7); height:var(--space-7); background:var(--ink-black)"></div>
+        </div>
+      </div>
+      <div class="demo-row">
+        <div style="width:64px;height:64px;background:var(--ink-white);border:var(--border-heavy);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font:var(--text-caption)">sm</div>
+        <div style="width:64px;height:64px;background:var(--ink-white);border:var(--border-heavy);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font:var(--text-caption)">md</div>
+        <div style="width:64px;height:64px;background:var(--ink-white);border:var(--border-heavy);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;font:var(--text-caption)">lg</div>
+        <div style="width:64px;height:64px;background:var(--ink-white);border:var(--border-heavy);border-radius:var(--radius-pill);display:flex;align-items:center;justify-content:center;font:var(--text-caption)">pill</div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section id="buttons">
+      <div class="section-head"><div class="section-num">4</div><h2>Buttons</h2></div>
+      <p class="section-desc">Pill-shaped, 2px bordered. Primary inverts to solid black; secondary stays outlined; ghost drops the border entirely.</p>
+      <div class="demo-block demo-row">
+        <button class="ink-btn ink-btn--primary">Primary</button>
+        <button class="ink-btn">Secondary</button>
+        <button class="ink-btn ink-btn--ghost">Ghost</button>
+        <button class="ink-btn ink-btn--sm ink-btn--primary">Small</button>
+        <button class="ink-btn ink-btn--lg">Large</button>
+        <button class="ink-btn ink-btn--icon" aria-label="add">+</button>
+        <button class="ink-btn ink-btn--primary" disabled>Disabled</button>
+      </div>
+      <pre style="background:var(--ink-white);border:var(--border-hairline);border-radius:var(--radius-md);padding:16px;overflow:auto;font:var(--text-numeric)">&lt;button class="ink-btn ink-btn--primary"&gt;Primary&lt;/button&gt;</pre>
+    </section>
+
+    <!-- CHIPS -->
+    <section id="chips">
+      <div class="section-head"><div class="section-num">5</div><h2>Chips</h2></div>
+      <p class="section-desc">Filter and selection controls. Active state fills solid black.</p>
+      <div class="demo-block demo-row">
+        <span class="ink-chip ink-chip--active">All</span>
+        <span class="ink-chip">Drafts</span>
+        <span class="ink-chip">Archived</span>
+        <span class="ink-chip ink-chip--removable">Tag <span class="ink-chip__x">×</span></span>
+      </div>
+    </section>
+
+    <!-- BADGES & TAGS -->
+    <section id="badges">
+      <div class="section-head"><div class="section-num">6</div><h2>Badges &amp; tags</h2></div>
+      <p class="section-desc">Badges carry counts; tags carry labels. Both come in solid and outline.</p>
+      <div class="demo-block demo-row">
+        <span class="ink-badge">3</span>
+        <span class="ink-badge--outline ink-badge">12</span>
+        <span class="ink-tag">Draft</span>
+        <span class="ink-tag ink-tag--solid">Synced</span>
+      </div>
+    </section>
+
+    <!-- CARDS -->
+    <section id="cards">
+      <div class="section-head"><div class="section-num">7</div><h2>Cards</h2></div>
+      <p class="section-desc">Heavy-bordered surfaces for content blocks. A flat variant drops to a hairline for dense lists of cards.</p>
+      <div class="swatch-grid" style="grid-template-columns:repeat(2,1fr)">
+        <div class="ink-card">
+          <div class="ink-card__media"></div>
+          <div class="ink-card__body">
+            <h3 class="ink-card__title">Field Notes</h3>
+            <div class="ink-card__meta">Updated 2 hours ago</div>
+          </div>
+        </div>
+        <div class="ink-card ink-card--flat">
+          <div class="ink-card__body" style="border-top:none">
+            <h3 class="ink-card__title">Flat card</h3>
+            <div class="ink-card__meta">Hairline border, no media</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- E-INK PANEL -->
+    <section id="panel">
+      <div class="section-head"><div class="section-num">8</div><h2>E-ink panel</h2></div>
+      <p class="section-desc">The signature component: a solid black title bar over a white body, framed by the heavy border — reads like a 1-bit device screen.</p>
+      <div class="ink-panel" style="max-width:420px">
+        <div class="ink-panel__bar"><span>Device Preview</span><span>72%</span></div>
+        <div class="ink-panel__body">
+          <p class="ink-quote">"The best interface is the one you stop noticing."</p>
+          <hr class="ink-panel__rule" />
+          <p class="ink-caption">— from the reading log, page 42</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LISTS -->
+    <section id="lists">
+      <div class="section-head"><div class="section-num">9</div><h2>Lists</h2></div>
+      <p class="section-desc">Hairline-divided rows for settings, inboxes, and file browsers.</p>
+      <ul class="ink-list" style="max-width:520px; border:var(--border-heavy); border-radius:var(--radius-md); overflow:hidden;">
+        <li class="ink-list__item">
+          <div><div class="ink-list__title">Sync frequency</div><div class="ink-list__sub">Every 15 minutes</div></div>
+          <span class="ink-badge--outline ink-badge">›</span>
+        </li>
+        <li class="ink-list__item">
+          <div><div class="ink-list__title">Display refresh</div><div class="ink-list__sub">Full refresh only</div></div>
+          <span class="ink-badge--outline ink-badge">›</span>
+        </li>
+        <li class="ink-list__item">
+          <div><div class="ink-list__title">Storage used</div><div class="ink-list__sub">1.2 GB of 4 GB</div></div>
+          <span class="ink-tag">82%</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- EMPTY STATE -->
+    <section id="empty">
+      <div class="section-head"><div class="section-num">10</div><h2>Empty state</h2></div>
+      <p class="section-desc">Centered glyph, short title, one line of supporting copy.</p>
+      <div class="ink-card" style="max-width:520px">
+        <div class="ink-empty">
+          <div class="ink-empty__glyph">＋</div>
+          <div class="ink-empty__title">No documents yet</div>
+          <div class="ink-empty__body">Add a file or sync a folder to see it appear on the device.</div>
+          <button class="ink-btn ink-btn--primary ink-btn--sm">Add document</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB BAR -->
+    <section id="tabbar">
+      <div class="section-head"><div class="section-num">11</div><h2>Tab bar</h2></div>
+      <p class="section-desc">Bottom navigation with a solid active state, divided by soft hairlines.</p>
+      <div class="ink-tabbar" style="max-width:520px; border-radius:var(--radius-md); overflow:hidden;">
+        <div class="ink-tabbar__item ink-tabbar__item--active">◐<span>Colors</span></div>
+        <div class="ink-tabbar__item">𝐓<span>Type</span></div>
+        <div class="ink-tabbar__item">▦<span>Components</span></div>
+        <div class="ink-tabbar__item">▤<span>Utilities</span></div>
+      </div>
+    </section>
+
+    <!-- UTILITIES -->
+    <section id="utilities">
+      <div class="section-head"><div class="section-num">12</div><h2>Utility classes</h2></div>
+      <p class="section-desc">Small helpers for colour, border, radius, spacing, and layout — for when a full component is overkill.</p>
+      <div class="ink-panel">
+        <div class="ink-panel__bar"><span>ink-card-style-kit.css</span><span>1 colour · 2px</span></div>
+        <div class="ink-panel__body" style="font:var(--text-numeric); line-height:1.9;">
+          .ink-bg-black&nbsp;&nbsp;&nbsp;.ink-bg-white&nbsp;&nbsp;&nbsp;.ink-text-700<br/>
+          .ink-border-heavy&nbsp;&nbsp;&nbsp;.ink-radius-pill&nbsp;&nbsp;&nbsp;.ink-radius-md<br/>
+          .ink-m-1 … .ink-m-7&nbsp;&nbsp;&nbsp;.ink-p-1 … .ink-p-7<br/>
+          .ink-flex&nbsp;&nbsp;&nbsp;.ink-flex-col&nbsp;&nbsp;&nbsp;.ink-grid&nbsp;&nbsp;&nbsp;.ink-gap-2/3/4<br/>
+          .ink-items-center&nbsp;&nbsp;&nbsp;.ink-justify-between&nbsp;&nbsp;&nbsp;.ink-hidden
+        </div>
+      </div>
+    </section>
+
+    <footer class="main-footer">Ink UI Kit v0.1 · one file, one colour, zero dependencies.</footer>
+  </main>
+</div>
+</div>

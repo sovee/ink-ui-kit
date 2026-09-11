@@ -1,0 +1,433 @@
+/* ============================================================
+   INK UI KIT — v0.1
+   A one-colour component kit for apps that talk to e-paper
+   displays. Pure black on warm off-white, a heavy 2px border
+   as the signature, pill controls, and a panel component that
+   renders like a 1-bit screen.
+
+   Drop this file in and use the class names below.
+   ============================================================ */
+
+:root {
+  /* ---- Foundations: colour ---- */
+  --ink-black: #111111; /* text, fills, active */
+  --ink-900:   #1a1a1a; /* heavy borders */
+  --ink-700:   #444444; /* secondary text */
+  --ink-500:   #8a8a8a; /* captions, eyebrows */
+  --ink-300:   #d6d6d6; /* hairlines */
+  --ink-200:   #ececec; /* soft dividers */
+  --ink-100:   #f5f5f3; /* page ground */
+  --ink-white: #ffffff; /* surfaces, paper */
+
+  /* ---- Foundations: type ---- */
+  --font-ui:    -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --font-mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --text-eyebrow: 600 11px/1.18 var(--font-ui);
+  --tracking-eyebrow: 0.18em;
+  --text-caption: 400 12px/1.4 var(--font-ui);
+  --text-body:    400 15px/1.55 var(--font-ui);
+  --text-body-lg: 400 18px/1.5 var(--font-ui);
+  --text-h3:      700 20px/1.25 var(--font-ui);
+  --text-h2:      700 28px/1.15 var(--font-ui);
+  --text-h1:      800 44px/1.05 var(--font-ui);
+  --text-numeric: 500 14px/1.4 var(--font-mono);
+  --text-quote:   400 16px/1.6 var(--font-serif);
+
+  /* ---- Foundations: spacing ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* ---- Foundations: radius ---- */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-pill: 999px;
+
+  /* ---- Foundations: border ---- */
+  --border-hairline: 1px solid var(--ink-300);
+  --border-soft:      1px solid var(--ink-200);
+  --border-heavy:     2px solid var(--ink-black);
+
+  /* ---- Foundations: motion ---- */
+  --ease-ink: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-med: 200ms;
+}
+
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+
+.ink-root, .ink-root * {
+  box-sizing: border-box;
+}
+
+.ink-root {
+  background: var(--ink-100);
+  color: var(--ink-black);
+  font: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+.ink-eyebrow {
+  font: var(--text-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+.ink-h1 { font: var(--text-h1); margin: 0; }
+.ink-h2 { font: var(--text-h2); margin: 0; }
+.ink-h3 { font: var(--text-h3); margin: 0; }
+
+.ink-body    { font: var(--text-body); color: var(--ink-black); }
+.ink-body-lg { font: var(--text-body-lg); color: var(--ink-black); }
+.ink-caption { font: var(--text-caption); color: var(--ink-700); }
+.ink-numeric { font: var(--text-numeric); font-variant-numeric: tabular-nums; }
+
+.ink-quote {
+  font: var(--text-quote);
+  font-style: italic;
+  color: var(--ink-900);
+}
+
+code.ink-code {
+  font: var(--text-numeric);
+  background: var(--ink-white);
+  border: var(--border-hairline);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.ink-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font: 600 14px/1 var(--font-ui);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  border: var(--border-heavy);
+  background: var(--ink-white);
+  color: var(--ink-black);
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-ink),
+              background var(--duration-fast) var(--ease-ink),
+              color var(--duration-fast) var(--ease-ink);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.ink-btn:hover   { transform: translateY(-1px); }
+.ink-btn:active  { transform: translateY(0); }
+.ink-btn:focus-visible {
+  outline: 2px solid var(--ink-black);
+  outline-offset: 2px;
+}
+.ink-btn:disabled,
+.ink-btn[aria-disabled="true"] {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ink-btn--primary {
+  background: var(--ink-black);
+  color: var(--ink-white);
+  border-color: var(--ink-black);
+}
+
+.ink-btn--ghost {
+  border-color: transparent;
+  background: transparent;
+}
+.ink-btn--ghost:hover { background: var(--ink-200); }
+
+.ink-btn--sm { padding: var(--space-2) var(--space-4); font-size: 12px; }
+.ink-btn--lg { padding: var(--space-4) var(--space-6); font-size: 16px; }
+
+.ink-btn--icon {
+  padding: var(--space-3);
+  border-radius: var(--radius-pill);
+  aspect-ratio: 1;
+}
+
+/* ============================================================
+   CHIPS
+   ============================================================ */
+
+.ink-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font: 500 13px/1 var(--font-ui);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--ink-black);
+  background: var(--ink-white);
+  color: var(--ink-black);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-ink),
+              color var(--duration-fast) var(--ease-ink);
+}
+
+.ink-chip:hover { background: var(--ink-200); }
+
+.ink-chip[aria-selected="true"],
+.ink-chip--active {
+  background: var(--ink-black);
+  color: var(--ink-white);
+}
+
+.ink-chip--removable .ink-chip__x {
+  margin-left: var(--space-1);
+  opacity: 0.6;
+}
+.ink-chip--removable:hover .ink-chip__x { opacity: 1; }
+
+/* ============================================================
+   BADGES & TAGS
+   ============================================================ */
+
+.ink-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font: 700 11px/1 var(--font-mono);
+  border-radius: var(--radius-pill);
+  background: var(--ink-black);
+  color: var(--ink-white);
+}
+
+.ink-badge--outline {
+  background: transparent;
+  color: var(--ink-black);
+  border: 1.5px solid var(--ink-black);
+}
+
+.ink-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font: 600 10px/1 var(--font-ui);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--ink-200);
+  color: var(--ink-700);
+}
+
+.ink-tag--solid {
+  background: var(--ink-black);
+  color: var(--ink-white);
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+
+.ink-card {
+  background: var(--ink-white);
+  border: var(--border-heavy);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.ink-card__media {
+  background: var(--ink-900);
+  aspect-ratio: 16/9;
+}
+
+.ink-card__body {
+  padding: var(--space-4);
+  border-top: var(--border-heavy);
+}
+
+.ink-card__title { font: var(--text-h3); margin: 0 0 4px; }
+.ink-card__meta  { font: var(--text-caption); color: var(--ink-700); }
+
+.ink-card--flat {
+  border-width: 1px;
+  border-color: var(--ink-300);
+}
+
+/* ============================================================
+   E-INK PANEL
+   Renders like a 1-bit screen: black header bar, white body,
+   heavy outer border. Use for "device preview" style content.
+   ============================================================ */
+
+.ink-panel {
+  background: var(--ink-white);
+  border: var(--border-heavy);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.ink-panel__bar {
+  background: var(--ink-black);
+  color: var(--ink-white);
+  font: 700 13px/1 var(--font-ui);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ink-panel__body {
+  padding: var(--space-5);
+}
+
+.ink-panel__rule {
+  border: none;
+  border-top: var(--border-hairline);
+  margin: var(--space-4) 0;
+}
+
+/* ============================================================
+   LISTS
+   ============================================================ */
+
+.ink-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: var(--border-hairline);
+}
+
+.ink-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: var(--border-hairline);
+  background: var(--ink-white);
+}
+
+.ink-list__item:hover { background: var(--ink-100); }
+
+.ink-list__title { font: 600 14px/1.3 var(--font-ui); }
+.ink-list__sub   { font: var(--text-caption); color: var(--ink-700); }
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+
+.ink-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-5);
+  color: var(--ink-700);
+}
+
+.ink-empty__glyph {
+  width: 48px;
+  height: 48px;
+  border: var(--border-heavy);
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 20px/1 var(--font-ui);
+  color: var(--ink-black);
+}
+
+.ink-empty__title { font: var(--text-h3); color: var(--ink-black); }
+.ink-empty__body  { font: var(--text-body); max-width: 32ch; }
+
+/* ============================================================
+   TAB BAR
+   ============================================================ */
+
+.ink-tabbar {
+  display: flex;
+  border-top: var(--border-heavy);
+  background: var(--ink-white);
+}
+
+.ink-tabbar__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-3) var(--space-2);
+  font: 600 11px/1 var(--font-ui);
+  color: var(--ink-700);
+  cursor: pointer;
+  border-right: var(--border-soft);
+}
+
+.ink-tabbar__item:last-child { border-right: none; }
+
+.ink-tabbar__item[aria-current="true"],
+.ink-tabbar__item--active {
+  color: var(--ink-white);
+  background: var(--ink-black);
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+/* colour */
+.ink-bg-black { background: var(--ink-black) !important; }
+.ink-bg-100   { background: var(--ink-100) !important; }
+.ink-bg-white { background: var(--ink-white) !important; }
+.ink-text-black { color: var(--ink-black) !important; }
+.ink-text-700   { color: var(--ink-700) !important; }
+.ink-text-500   { color: var(--ink-500) !important; }
+.ink-text-white { color: var(--ink-white) !important; }
+
+/* border */
+.ink-border        { border: var(--border-hairline) !important; }
+.ink-border-heavy  { border: var(--border-heavy) !important; }
+.ink-border-none   { border: none !important; }
+.ink-radius-sm   { border-radius: var(--radius-sm) !important; }
+.ink-radius-md   { border-radius: var(--radius-md) !important; }
+.ink-radius-lg   { border-radius: var(--radius-lg) !important; }
+.ink-radius-pill { border-radius: var(--radius-pill) !important; }
+
+/* spacing (margin / padding, scale 1–7) */
+.ink-m-1 { margin: var(--space-1) !important; } .ink-p-1 { padding: var(--space-1) !important; }
+.ink-m-2 { margin: var(--space-2) !important; } .ink-p-2 { padding: var(--space-2) !important; }
+.ink-m-3 { margin: var(--space-3) !important; } .ink-p-3 { padding: var(--space-3) !important; }
+.ink-m-4 { margin: var(--space-4) !important; } .ink-p-4 { padding: var(--space-4) !important; }
+.ink-m-5 { margin: var(--space-5) !important; } .ink-p-5 { padding: var(--space-5) !important; }
+.ink-m-6 { margin: var(--space-6) !important; } .ink-p-6 { padding: var(--space-6) !important; }
+.ink-m-7 { margin: var(--space-7) !important; } .ink-p-7 { padding: var(--space-7) !important; }
+
+/* layout */
+.ink-flex     { display: flex !important; }
+.ink-flex-col { display: flex !important; flex-direction: column !important; }
+.ink-grid     { display: grid !important; }
+.ink-gap-2 { gap: var(--space-2) !important; }
+.ink-gap-3 { gap: var(--space-3) !important; }
+.ink-gap-4 { gap: var(--space-4) !important; }
+.ink-items-center   { align-items: center !important; }
+.ink-justify-between{ justify-content: space-between !important; }
+.ink-hidden { display: none !important; }
